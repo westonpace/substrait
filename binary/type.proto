@@ -166,10 +166,17 @@ message Type {
         string name = 2;
     }
 
+    message TypeParameter {
+        oneof type_parameter {
+            Type type = 1;
+            string parameter_name = 2;
+        }
+    }
+
     message IntegerParameter {
         oneof integer_type {
             int32 literal = 1;
-            String parameter_name = 2;
+            string parameter_name = 2;
         }
     }
 }

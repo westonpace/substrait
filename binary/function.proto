@@ -12,16 +12,17 @@ message FunctionSignature {
 
     message Scalar {
         Identifier id = 1;
-        repeated Argument arguments = 2;
-        repeated string name = 3;
-        Description description = 4;
+        string name = 2;
+        repeated Parameter parameters = 3;
+        repeated Argument arguments = 4;
+        Description description = 5;
 
-        bool deterministic = 7;
-        bool session_dependent = 8;
+        bool deterministic = 6;
+        bool session_dependent = 7;
 
-        TypeExpression output_type = 9;
+        TypeExpression output_type = 8;
 
-        repeated Implementation implementations = 10;
+        repeated Implementation implementations = 9;
     }
 
     message Aggregate {
@@ -95,22 +96,24 @@ message FunctionSignature {
         }
     }
 
+    message Parameter {
+        string name = 1;
+        Type type = 2;
+    }
+
     message Argument {
 
-        message Plain {
-            Type type = 1;
+        string name = 1;
+        
+        oneof arg_type {
+            Type type = 2;
+            string parameter_name = 3;
+            TypeExpression expression = 4;
         }
-
-        message Constant {
-            Type type = 1;
-        }
-
-        message Variadic {
-            Type type = 1;
-            uint32 min = 2;
-            uint32 max = 3;
-        }
-
+        // For variadic arguments
+        optional uint32 min = 5;
+        optional uint32 max = 6;
+        bool constant = 7;
     }
 
 }
