@@ -19,53 +19,33 @@ message SimpleExtensionURI {
   string uri = 2;
 }
 
-// Describes a mapping between a specific extension entity and the uri where
-// that extension can be found.
+// Describes a type of extension.  For example, "function", "data type",
+// "type variation", or "file format".  When a spot in the plan can be extended
+// (an extension point) then that point should define what type of extension
+// is allowed.  When extensions are listed in the extension declaration each
+// extension should report what type it fulfills.
+message ExtensionType {
+  // The URI of the spec that defines this extension type
+  uint32 extension_uri_reference = 1;
+  // An anchor to reference this extension type in extension declarations
+  uint32 extension_type_anchor = 2;
+  // The name of the extension type
+  string name = 3;
+}
+
+// A declaration of an extension that will be used in the plan.  For each extension
+// an anchor is defined which will be used to reference the extension.
 message SimpleExtensionDeclaration {
-  oneof mapping_type {
-    ExtensionType extension_type = 1;
-    ExtensionTypeVariation extension_type_variation = 2;
-    ExtensionFunction extension_function = 3;
-  }
-
-  // Describes a Type
-  message ExtensionType {
-    // references the extension_uri_anchor defined for a specific extension URI.
-    uint32 extension_uri_reference = 1;
-
-    // A surrogate key used in the context of a single plan to reference a
-    // specific extension type
-    uint32 type_anchor = 2;
-
-    // the name of the type in the defined extension YAML.
-    string name = 3;
-  }
-
-  message ExtensionTypeVariation {
-    // references the extension_uri_anchor defined for a specific extension URI.
-    uint32 extension_uri_reference = 1;
-
-    // A surrogate key used in the context of a single plan to reference a
-    // specific type variation
-    uint32 type_variation_anchor = 2;
-
-    // the name of the type in the defined extension YAML.
-    string name = 3;
-  }
-
-  message ExtensionFunction {
-    // references the extension_uri_anchor defined for a specific extension URI.
-    uint32 extension_uri_reference = 1;
-
-    // A surrogate key used in the context of a single plan to reference a
-    // specific function
-    uint32 function_anchor = 2;
-
-    // A simple name if there is only one impl for the function within the YAML.
-    // A compound name, referencing that includes type short names if there is
-    // more than one impl per name in the YAML.
-    string name = 3;
-  }
+  // The type of extension that is being supplied
+  // This should be a reference to an extension_type_anchor in an ExtensionType
+  // message.
+  uint32 extension_type_reference = 1;
+  // A reference to the URI where this extension implementation is defined.
+  uint32 extension_uri_reference = 2;
+  // An anchor to reference this extension elsewhere in this plan
+  uint32 extension_anchor = 3;
+  // The name of this extension implementation
+  string name = 4;
 }
 
 // A generic object that can be used to embed additional extension information

@@ -26,19 +26,22 @@ message Plan {
   // a list of yaml specifications this plan may depend on
   repeated substrait.extensions.SimpleExtensionURI extension_uris = 1;
 
+  // a list of extension types that this plan depends on
+  repeated substrait.extensions.ExtensionType extension_types = 2;
+
   // a list of extensions this plan may depend on
-  repeated substrait.extensions.SimpleExtensionDeclaration extensions = 2;
+  repeated substrait.extensions.SimpleExtensionDeclaration extensions = 3;
 
   // one or more relation trees that are associated with this plan.
-  repeated PlanRel relations = 3;
+  repeated PlanRel relations = 4;
 
   // additional extensions associated with this plan.
-  substrait.extensions.AdvancedExtension advanced_extensions = 4;
+  substrait.extensions.AdvancedExtension advanced_extensions = 5;
 
   // A list of com.google.Any entities that this plan may use. Can be used to
   // warn if some embedded message types are unknown. Note that this list may
   // include message types that are ignorable (optimizations) or that are
   // unused. In many cases, a consumer may be able to work with a plan even if
   // one or more message types defined here are unknown.
-  repeated string expected_type_urls = 5;
+  repeated string expected_type_urls = 6;
 }
