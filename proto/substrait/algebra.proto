@@ -104,7 +104,7 @@ message ReadRel {
 
       // Original file format enum, superseded by the file_format oneof.
       reserved 5;
-      reserved "format"
+      reserved "format";
 
       // the index of the partition this item belongs to
       uint64 partition_index = 6;
