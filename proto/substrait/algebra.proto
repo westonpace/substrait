@@ -117,10 +117,10 @@ message ReadRel {
 
       // The format of the files
       oneof file_format {
-        Empty parquet = 9;
-        Empty arrow_file = 10;
-        Empty arrow_stream = 11;
-        Empty orc = 12;
+        google.protobuf.Empty parquet = 9;
+        google.protobuf.Empty arrow_file = 10;
+        google.protobuf.Empty arrow_stream = 11;
+        google.protobuf.Empty orc = 12;
         google.protobuf.Any extension = 13;
       }
 
