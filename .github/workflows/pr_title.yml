@@ -24,7 +24,8 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const message = `Substrait follows the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
+            const message = `Substrait follows the [Conventional Commits specification]\
+              (https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
               The PR title and description are used as the merge commit message.
               
               Please update your PR title and description to match the specification.`
@@ -79,10 +80,12 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const message = `Substrait follows the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
+            const message = `Substrait follows the [Conventional Commits specification]\
+            (https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
               The PR title and description are used as the merge commit message.
               
-              Your PR appears to contain a breaking change to the specification.  This means your PR description must contain a BREAKING CHANGE: footer.`
+              Your PR appears to contain a breaking change to the specification.
+              This means your PR description must contain a \`BREAKING CHANGE: \` footer.`
             // Get list of current comments
             const list_comments = github.rest.issues.listComments({
               owner: context.repo.owner,
