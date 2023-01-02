@@ -16,4 +16,7 @@ jobs:
           node-version: "14"
       - run: npx commitlint --verbose <<< $COMMIT_MSG
         env:
-          COMMIT_MSG: ${{ github.event.pull_request.title }}\n${{ github.event.pull_request.body }}
+          COMMIT_MSG: >
+            ${{ github.event.pull_request.title }}
+            
+            ${{ github.event.pull_request.body }}
