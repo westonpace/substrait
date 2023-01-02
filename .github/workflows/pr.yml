@@ -80,7 +80,7 @@ jobs:
           done
         working-directory: ./extensions
   commitlint:
-    name: Lint commits for semantic-release
+    name: PR title / description conforms to semantic-release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -89,7 +89,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "14"
-      - run: npx commitlint --from=${{ github.event.pull_request.base.sha }} --to=${{ github.sha }} --verbose
+      - run: echo -e "${{ github.event.pull_request.title }}\n${{ github.event.pull_request.body}}" | npx commitlint --verbose
   dry_run_release:
     name: Dry-run release
     runs-on: ubuntu-latest
