@@ -1,0 +1,17 @@
+name: PR Title Check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+jobs:
+  commitlint:
+    name: PR title / description conforms to semantic-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - run: echo -e "${{ github.event.pull_request.title }}\n${{ github.event.pull_request.body}}" | npx commitlint --verbose
