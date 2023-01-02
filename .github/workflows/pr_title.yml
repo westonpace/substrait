@@ -14,6 +14,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "14"
-      - run: echo -e "${{ env.COMMIT_MSG }}" | npx commitlint --verbose
+      - run: echo "${{ env.COMMIT_MSG }}" | npx commitlint --verbose
         env:
-          COMMIT_MSG: ${{ github.event.pull_request.title }}{{ github.event.pull_request.body }}
+          COMMIT_MSG: ${{ github.event.pull_request.title }}${{ github.event.pull_request.body }}
