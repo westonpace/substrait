@@ -21,11 +21,14 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const message = `Substrait follows the [Conventional Commits specification]\
-              (https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
+            const message = `Substrait follows the [Conventional Commits
+              specification](1) for release automation.
+
               The PR title and description are used as the merge commit message.
               
-              Please update your PR title and description to match the specification.`
+              Please update your PR title and description to match the specification.
+              
+              [1]: https://www.conventionalcommits.org/en/v1.0.0/`
             // Get list of current comments
             const list_comments = github.rest.issues.listComments({
               owner: context.repo.owner,
