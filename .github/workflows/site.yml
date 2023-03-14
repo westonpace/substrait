@@ -13,7 +13,6 @@ jobs:
   site:
     name: Build & Deploy Website
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'substrait-io/substrait' }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Python
@@ -86,7 +85,14 @@ jobs:
       - name: Generate Static Site
         run: mkdocs build
         working-directory: ./site
+      - name: Archive Static Site
+        if: ${{ github.repository != 'substrait-io/substrait' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: rendered-site
+          path: ./site
       - name: Deploy Static Site to GitHub
+        if: ${{ github.repository == 'substrait-io/substrait' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           external_repository: substrait-io/substrait.io
