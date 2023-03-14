@@ -37,7 +37,7 @@ jobs:
         run: python3 -m pip install -r ./site/requirements.txt
       - name: Get collaborators
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ WESTON_TOKEN }}
         run: |
           gh api graphql -f query='{
             repository(owner: "substrait-io", name: "substrait") {
