@@ -1,5 +1,4 @@
 site_name: "Substrait: Cross-Language Serialization for Relational Algebra"
-# Blah
 site_description: >-
   Substrait is a new specification and set of tools that allow different systems to express clear data manipulation
   operations.
