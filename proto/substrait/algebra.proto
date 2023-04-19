@@ -54,6 +54,10 @@ message RelCommon {
   }
 }
 
+message FilterSelectivity {
+  double selectivity = 1;
+}
+
 // The scan operator of base data (physical or virtual), including filtering and projection.
 message ReadRel {
   RelCommon common = 1;
